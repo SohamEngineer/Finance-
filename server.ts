@@ -2,8 +2,8 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import app from "./app";
-import { connectDB } from "./config/db";
+import app from "./app.ts";
+import { connectDB } from "./src/config/db.ts";
 
 // Handle synchronous errors
 process.on("uncaughtException", (err: Error) => {
@@ -22,7 +22,7 @@ const startServer = async () => {
 
     const server = app.listen(PORT, () => {
       console.log(
-        `🚀 Server running on http://localhost:${PORT}`
+        ` Server running on http://localhost:${PORT}`
       );
     });
 
