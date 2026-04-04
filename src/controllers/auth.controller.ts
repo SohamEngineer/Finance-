@@ -13,8 +13,15 @@ import {
 import {
   generateToken
 } from "../utils/jwt.ts";
+import { loginSchema, registerSchema } from "../validation/auth.validation.ts";
 
-//register controller
+
+
+
+
+/* ============================= */
+/* REGISTER */
+/* ============================= */
 
 export const registerUser = async (
   req: Request,
@@ -23,22 +30,16 @@ export const registerUser = async (
 
   try {
 
+    // Validate request body
+    const validatedData =
+      registerSchema.parse(req.body);
+
     const {
       name,
       email,
       password
-    } = req.body;
+    } = validatedData;
 
-    // Basic validation
-    if (!name || !email || !password) {
-
-      return res.status(400).json({
-        message: "All fields are required"
-      });
-
-    }
-
-    // Default role = viewer
     const role_id = 1;
 
     // Check existing user
@@ -83,7 +84,17 @@ export const registerUser = async (
 
     });
 
-  } catch (error) {
+  } catch (error: any) {
+
+    // Zod validation error
+    if (error.name === "ZodError") {
+
+      return res.status(400).json({
+        message: "Validation failed",
+        errors: error.errors
+      });
+
+    }
 
     console.error(error);
 
@@ -95,7 +106,12 @@ export const registerUser = async (
 
 };
 
-//Login controller
+
+
+/* ============================= */
+/* LOGIN */
+/* ============================= */
+
 export const loginUser = async (
   req: Request,
   res: Response
@@ -103,7 +119,12 @@ export const loginUser = async (
 
   try {
 
-    const { email, password } = req.body;
+    // Validate request body
+    const validatedData =
+      loginSchema.parse(req.body);
+
+    const { email, password } =
+      validatedData;
 
     const user =
       await findUserByEmail(email);
@@ -146,7 +167,16 @@ export const loginUser = async (
 
     });
 
-  } catch (error) {
+  } catch (error: any) {
+
+    if (error.name === "ZodError") {
+
+      return res.status(400).json({
+        message: "Validation failed",
+        errors: error.errors
+      });
+
+    }
 
     res.status(500).json({
       message: "Login failed"

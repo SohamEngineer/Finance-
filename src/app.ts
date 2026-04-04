@@ -4,6 +4,7 @@ import cors from "cors";
 import authRouter from "./routes/auth.routes.ts";
 import financeRouter from "./routes/finance.routes.ts";
 import summaryRouter from "./routes/summary.routes.ts";
+import { apiLimiter } from "./middleware/rateLimit.middleware.ts";
 
 const app = express();
 
@@ -17,6 +18,9 @@ app.use(
     credentials: true
   })
 );
+
+//ratelimit
+app.use("/api", apiLimiter);
 
 //Auth apis
 app.use("/api/auth",authRouter)
