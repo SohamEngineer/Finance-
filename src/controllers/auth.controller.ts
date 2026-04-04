@@ -6,12 +6,15 @@ import {
 } from "../service/auth.service.ts";
 
 import {
+  comparePassword,
   hashPassword
 } from "../utils/hash.ts";
 
 import {
   generateToken
 } from "../utils/jwt.ts";
+
+//register controller
 
 export const registerUser = async (
   req: Request,
@@ -64,17 +67,17 @@ export const registerUser = async (
       );
 
     // Generate token
-    // const token =
-    //   generateToken(
-    //     user.id,
-    //     "viewer"
-    //   );
+    const token =
+      generateToken(
+        user.id,
+        "viewer"
+      );
 
     res.status(201).json({
 
       message: "User registered",
 
-      // token,
+      token,
 
       user
 
@@ -86,6 +89,67 @@ export const registerUser = async (
 
     res.status(500).json({
       message: "Registration failed"
+    });
+
+  }
+
+};
+
+//Login controller
+export const loginUser = async (
+  req: Request,
+  res: Response
+) => {
+
+  try {
+
+    const { email, password } = req.body;
+
+    const user =
+      await findUserByEmail(email);
+
+    if (!user) {
+
+      return res.status(404).json({
+        message: "User not found"
+      });
+
+    }
+
+    const isMatch =
+      await comparePassword(
+        password,
+        user.password
+      );
+
+    if (!isMatch) {
+
+      return res.status(401).json({
+        message: "Invalid credentials"
+      });
+
+    }
+
+    const token =
+      generateToken(
+        user.id,
+        user.role
+      );
+
+    res.json({
+
+      message: "Login successful",
+
+      token,
+
+      user
+
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: "Login failed"
     });
 
   }

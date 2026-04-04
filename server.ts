@@ -2,8 +2,8 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import app from "./app.ts";
 import { connectDB } from "./src/config/db.ts";
+import app from "./src/app.ts";
 
 // Handle synchronous errors
 process.on("uncaughtException", (err: Error) => {

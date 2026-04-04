@@ -2,8 +2,8 @@ import express from "express";
 
 import {
   registerUser,
+  loginUser
 } from "../controllers/auth.controller.ts";
-import { loginUser } from "../controllers/login.controller.ts";
 
 const authRouter = express.Router();
 
