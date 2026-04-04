@@ -32,61 +32,44 @@ financeRouter.post(
   "/",
 
   protect,
-
   authorizeRoles("admin"),
-
   createFinanceRecord
 
 );
-
-
 
 // GET RECORDS
 // Viewer, Analyst, Admin
 financeRouter.get(
 
   "/",
-
   protect,
-
   authorizeRoles(
     "viewer",
     "analyst",
     "admin"
   ),
-
   getFinanceRecords
 
 );
-
-
 
 // UPDATE RECORD
 // Admin only
 financeRouter.patch(
 
   "/:id",
-
   protect,
-
   authorizeRoles("admin"),
-
   updateFinanceRecord
 
 );
-
-
 
 // DELETE RECORD
 // Admin only
 financeRouter.delete(
 
   "/:id",
-
   protect,
-
   authorizeRoles("admin"),
-
   deleteFinanceRecord
 
 );

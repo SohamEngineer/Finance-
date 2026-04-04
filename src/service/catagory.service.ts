@@ -10,7 +10,7 @@ export const getCategoryTotals = async (
       category,
       SUM(amount) as total
 
-    FROM finance_records
+    FROM finance_record
 
     WHERE
       user_id = ${user_id}
@@ -28,26 +28,37 @@ export const getMonthlyTrend = async (
   user_id: string
 ) => {
 
-  const result = await sql`
+  try {
 
-    SELECT
+    const result = await sql`
 
-      DATE_TRUNC('month', date) as month,
+      SELECT
+        DATE_TRUNC('month', date) as month,
+        SUM(amount) as total
 
-      SUM(amount) as total
+      FROM finance_record
 
-    FROM finance_record
+      WHERE
+        user_id = ${user_id}
+        AND is_deleted = false
 
-    WHERE
-      user_id = ${user_id}
-      AND is_deleted = false
+      GROUP BY month
 
-    GROUP BY month
+      ORDER BY month;
 
-    ORDER BY month;
+    `;
 
-  `;
+    return result;
 
-  return result;
+  } catch (error) {
+
+    console.error(
+      "Monthly trend error:",
+      error
+    );
+
+    throw error;
+
+  }
 
 };

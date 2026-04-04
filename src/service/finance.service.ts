@@ -55,7 +55,7 @@ export const getRecords=async(
         endDate
     }=filters;
     let query=sql`
-    SELECT * FROM financial_records
+    SELECT * FROM finance_record
     WHERE user_id=${user_id}
     AND is_deleted=false
     `
@@ -123,7 +123,7 @@ export const deleteRecords=async(
 )=>{
     await sql `
     UPDATE finance_record
-    SET is_delete=true
+    SET is_deleted=true
     where id=${id}`
 
 }
