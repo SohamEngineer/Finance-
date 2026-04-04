@@ -1,31 +1,24 @@
 {
   "compilerOptions": {
-    /* Language */
     "target": "ES2020",
 
-    /* Modules */
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
 
-    /* Project structure */
     "rootDir": "./src",
     "outDir": "./dist",
 
-    /* Node compatibility */
     "esModuleInterop": true,
     "resolveJsonModule": true,
 
-    /* Safety */
     "strict": true,
     "skipLibCheck": true,
 
-    /* Output */
     "sourceMap": true,
 
-    /* Performance */
-    "forceConsistentCasingInFileNames": true
+    "ignoreDeprecations": "6.0"
   },
 
-  "include": ["src"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }

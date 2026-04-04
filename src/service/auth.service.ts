@@ -1,4 +1,4 @@
-import sql from "../config/db.ts";
+import sql from "../config/db";
 
 export const createUser = async (
   name: string,

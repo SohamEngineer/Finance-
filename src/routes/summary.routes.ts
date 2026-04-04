@@ -4,19 +4,19 @@ import {
 
   protect
 
-} from "../middleware/auth.middleware.ts";
+} from "../middleware/auth.middleware";
 
 import {
 
   authorizeRoles
 
-} from "../middleware/role.middleware.ts";
+} from "../middleware/role.middleware";
 
 import {
 
   getDashboardSummary
 
-} from "../controllers/summary.controller.ts";
+} from "../controllers/summary.controller";
 
 const summaryRouter = express.Router();
 

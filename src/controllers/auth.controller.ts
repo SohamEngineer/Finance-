@@ -3,17 +3,17 @@ import type { Request, Response } from "express";
 import {
   createUser,
   findUserByEmail
-} from "../service/auth.service.ts";
+} from "../service/auth.service";
 
 import {
   comparePassword,
   hashPassword
-} from "../utils/hash.ts";
+} from "../utils/hash";
 
 import {
   generateToken
-} from "../utils/jwt.ts";
-import { loginSchema, registerSchema } from "../validation/auth.validation.ts";
+} from "../utils/jwt";
+import { loginSchema, registerSchema } from "../validation/auth.validation";
 
 
 

@@ -3,11 +3,11 @@ import express from "express";
 import {
   registerUser,
   loginUser
-} from "../controllers/auth.controller.ts";
+} from "../controllers/auth.controller";
 
 import {
   loginLimiter
-} from "../middleware/rateLimit.middleware.ts";
+} from "../middleware/rateLimit.middleware";
 
 const authRouter = express.Router();
 

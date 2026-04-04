@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { getNetBalance, getTotalExpense, getTotalIncome } from "../service/summary.service.ts";
-import { getCategoryTotals, getMonthlyTrend } from "../service/catagory.service.ts";
+import { getNetBalance, getTotalExpense, getTotalIncome } from "../service/summary.service";
+import { getCategoryTotals, getMonthlyTrend } from "../service/catagory.service";
 
 type AuthenticatedRequest = Request & {
   user?: {

@@ -12,7 +12,7 @@ import {
   getRecords,
   updateRecord,
 
-} from "../service/finance.service.ts";
+} from "../service/finance.service";
 
 
 

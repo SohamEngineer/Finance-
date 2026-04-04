@@ -7,19 +7,19 @@ import {
   updateFinanceRecord,
   deleteFinanceRecord
 
-} from "../controllers/finance.controller.ts";
+} from "../controllers/finance.controller";
 
 import {
 
   protect
 
-} from "../middleware/auth.middleware.ts";
+} from "../middleware/auth.middleware";
 
 import {
 
   authorizeRoles
 
-} from "../middleware/role.middleware.ts";
+} from "../middleware/role.middleware";
 
 const financeRouter = express.Router();
 

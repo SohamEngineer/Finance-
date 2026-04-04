@@ -1,11 +1,11 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import authRouter from "./routes/auth.routes.ts";
-import financeRouter from "./routes/finance.routes.ts";
-import summaryRouter from "./routes/summary.routes.ts";
-import { apiLimiter } from "./middleware/rateLimit.middleware.ts";
-import { swaggerSpec, swaggerUi } from "./config/swagger.ts";
+import authRouter from "./routes/auth.routes";
+import financeRouter from "./routes/finance.routes";
+import summaryRouter from "./routes/summary.routes";
+import { apiLimiter } from "./middleware/rateLimit.middleware";
+import { swaggerSpec, swaggerUi } from "./config/swagger";
 
 const app = express();
 

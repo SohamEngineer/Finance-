@@ -1,4 +1,4 @@
-import sql from "../config/db.ts"
+import sql from "../config/db"
 
 //record create query
 export const createRecord = async (
