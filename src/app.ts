@@ -5,6 +5,7 @@ import authRouter from "./routes/auth.routes.ts";
 import financeRouter from "./routes/finance.routes.ts";
 import summaryRouter from "./routes/summary.routes.ts";
 import { apiLimiter } from "./middleware/rateLimit.middleware.ts";
+import { swaggerSpec, swaggerUi } from "./config/swagger.ts";
 
 const app = express();
 
@@ -12,6 +13,11 @@ app.use(express.json());
 
 app.use(cookieParser());
 
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec)
+);
 app.use(
   cors({
     origin: "http://localhost:3000",
