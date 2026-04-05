@@ -36,6 +36,7 @@ const startServer = async () => {
       server.close(() => process.exit(0));
     });
 
+
     process.on("SIGINT", () => {
       console.log("SIGINT received. Shutting down...");
       server.close(() => process.exit(0));
